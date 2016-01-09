@@ -3,8 +3,7 @@
   <head>
         <meta charset="UTF-8"/>
         <title>Сервіс Обліку Студентів</title>
-        <meta name="description"
-                value="Система Обліку Студентів Навчального Закладу" />
+        <meta name="description" value="Система Обліку Студентів Навчального Закладу"/>
           
           <!-- Include Styles -->
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -28,6 +27,7 @@
                 <option value="">Усі Студенти</option>
                 <option value="">Б1УМБ2, Кавілл Генрі (№001)</option>
                 <option value="">Б1УМБ1, Джилленхол Джейк (№002)</option>
+                <option value="">Б1УМБ3, Фассбендер Майкл (№003)</option>
            </select>
         </div>
         </div>
@@ -37,10 +37,9 @@
         <div class="row" id="sub-header">
         <div class="col-xs-12">
                     <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#">Студенти</a></li>
+                <li role="presentation"><a href="#">Студенти</a></li>
                 <li role="presentation"><a href="#">Відвідування</a></li>
-                <li role="presentation"><a href="#">Групи</a></li>
-                
+                <li role="presentation" class="active"><a href="#">Групи</a></li>
                     </ul>
         </div>
         </div>
@@ -50,32 +49,27 @@
         <div class="row" id="content-columns">
         <div class="col-xs-12" id="content-column">
                 
-               <!-- Status Message -->
-           <div class="alert alert-warning">Зміни скасовано.</div>
-             <h2>База студентів</h2>
              
-               <!-- Add Student Button -->
-        <a class="btn btn-primary" href="#">Додати Студента</a>
+             <h2>Групи</h2>
+             
+               <!-- Add Group Button -->
+        <a class="btn btn-primary" href="#">Додати Групу</a>
               
-              <!-- Start Students Listing -->
+              <!-- Start Groups Listing -->
                 <table class="table table-hover table-striped table-condensed">
                  <thead>
                   <tr>
                         <th> <a href=""> № </a></th>
-                        <th> Фото </th>
-                        <th> <a href=""> Прізвище &uarr; </a></th>
-                        <th> <a href="#"> Ім'я </a></th>
-                        <th> <a href="#"> № Білету </a></th>
+                        <th> <a href=""> Назва &uarr; </a></th>
+                        <th> <a href="#"> Староста </a></th>
                         <th> Дії </th>
                   </tr>
                 </thead>
              <tbody>
                   <tr>
                         <td>1</td>
-                        <td><img height="30" width="30" src="./img/1.jpg" class="img-circle"></td>
-                        <td><a title="Редагувати" href="#">Кавілл</a></td>
-                        <td><a title="Редагувати" href="#">Генрі</a></td>
-                        <td>001</td>
+                        <td><a title="Редагувати" href="#">Б1УМБ2</a></td>
+                        <td><a title="Редагувати" href="#">Кавілл Генрі</a></td>
                         <td>
                                 <div class="dropdown">
                           <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія
@@ -97,10 +91,8 @@
                           </tr>
                   <tr>
                         <td>2</td>
-                        <td><img height="30" width="30" src="./img/2.jpg" class="img-circle"></td>
-                        <td><a title="Редагувати" href="#">Джилленхол</a></td>
-                        <td><a title="Редагувати" href="#">Джейк</a></td>
-                        <td>002</td>
+                        <td><a title="Редагувати" href="#">Б1УМБ1</a></td>
+                        <td><a title="Редагувати" href="#">Джилленхол Джейк</a></td>
                         <td>
                                 <div class="dropdown">
                           <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія
@@ -122,10 +114,8 @@
                           </tr>
                   <tr>
                         <td>3</td>
-                        <td><img height="30" width="30" src="./img/3.jpg" class="img-circle"></td>
-                        <td><a title="Редагувати" href="#">Фассбендер</a></td>
-                        <td><a title="Редагувати" href="#">Майкл</a></td>
-                        <td>003</td>
+                        <td><a title="Редагувати" href="#">Б1УМБ3</a></td>
+                        <td><a title="Редагувати" href="#">Фассбендер Майкл</a></td>
                         <td>
                                 <div class="dropdown">
                           <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія
@@ -150,15 +140,12 @@
                 <nav>
                         <ul class="pagination">
                                 <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
+                                <li class="disabled active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
                                 <li><a href="#">&raquo;</a></li>
                         </ul>
                 </nav>
-                <!-- End Students Listing -->
+                <!-- End Groups Listing -->
               
         </div>
         </div>
@@ -174,14 +161,6 @@
                 
         </div>
                 <!-- End Container -->
-                
-                
-                
-                  <!-- Javascripts Section -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-                  integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-                  crossorigin="anonymous"></script>
        
         </body>
         
