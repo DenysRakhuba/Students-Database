@@ -26,6 +26,15 @@ SECRET_KEY = '=vrq#l$#p)v(@=hd#z=cm@wn*&lg2rj^sr88(5t%1z-xq1c@f)'
 DEBUG = True
 ALLOWED_HOSTS = []
 
+from django.conf import global_settings
+
+TEMPLATE_CONTEXT_PROCESSORS = \
+	global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
+	'django.core.context_processors.request',
+	'studentsdb.context_processors.students_proc',
+]
+
+PORTAL_URL = 'http://localhost:8000'
 
 # Application definition
 
