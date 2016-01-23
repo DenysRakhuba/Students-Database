@@ -34,7 +34,7 @@ TEMPLATE_CONTEXT_PROCESSORS = \
 	'studentsdb.context_processors.students_proc',
 ]
 
-PORTAL_URL = 'http://localhost:8000'
+
 
 # Application definition
 
