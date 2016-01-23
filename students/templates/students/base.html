@@ -26,6 +26,7 @@
                 <h1>Сервіс Обліку Студентів</h1>
         </div>
                 <!-- Groups Selector -->
+                {% block groups %}
         <div class="col-xs-4" id="group-selector">
                    <strong>Група:</strong>
         <select>
@@ -34,6 +35,7 @@
                 <option value="">Б1УМБ1, Джилленхол Джейк (№002)</option>
            </select>
         </div>
+        {% endblock groups %}
         </div>
                 <!-- End Header -->
                 
@@ -67,15 +69,16 @@
              </div>
           </div>
              
-             
+             {% block footer %}
                <!-- Start Footer -->
                 <div class="row" id="footer">
                   <div class="col-xs-12">
                       &copy; 2016 Сервіс Обліку Студентів
                       </div>
                   </div>
+                {% endblock footer %}
                 <!-- End Footer -->
-                </div>
+              
                 <!-- End Container -->
                 
                 
