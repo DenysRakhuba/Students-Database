@@ -28,13 +28,14 @@ ALLOWED_HOSTS = []
 
 from django.conf import global_settings
 
-TEMPLATE_CONTEXT_PROCESSORS = \
+''' TEMPLATE_CONTEXT_PROCESSORS = \
 	global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
 	'django.core.context_processors.request',
 	'studentsdb.context_processors.students_proc',
-]
+] '''
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 
 # Application definition
 
@@ -72,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+		'studentsdb.context_processors.students_proc',
             ],
         },
     },
