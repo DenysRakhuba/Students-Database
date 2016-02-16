@@ -49,6 +49,8 @@
                   <a href="{% url "journal" %}">Відвідування</a></li>
                 <li role="presentation" {% if '/groups' in request.path %} class="active"{% endif %}>
                   <a href="{% url "groups" %}">Групи</a></li>
+                <li role="presentation" {% if '/exams' in request.path %} class="active"{% endif %}>
+                  <a href="{% url "exams" %}">Іспити</a></li>
                 
                     </ul>
         </div>
@@ -81,13 +83,14 @@
               
                 <!-- End Container -->
                 
-                
+                {% block extra_js %}
                   <!-- Javascripts Section -->
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
                   integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
                   crossorigin="anonymous"></script>
-          {% block extra_js %}{% endblock extra_js %}
+  
+          {% endblock extra_js %}
        
         </body>
         
