@@ -1,6 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
+from django.views.generic import TemplateView
+
+
 
 urlpatterns = patterns('',
     # Students urls
@@ -23,7 +26,14 @@ urlpatterns = patterns('',
     url(r'^groups/(?P<gid>\d+)/delete/$', 'students.views.groups.groups_delete',
          name='groups_delete'),
 
-
+    #exams
+    url(r'^exams/$', 'students.views.exams.exams_list', name='exams'),
+    url(r'^exams/add/$', 'students.views.exams.exams_add',
+         name='exams_add'),
+    url(r'^exams/(?P<gid>\d+)/edit/$', 'students.views.exams.exams_edit',
+         name='exams_edit'),
+    url(r'^exams/(?P<gid>\d+)/delete/$', 'students.views.exams.exams_delete',
+         name='exams_delete'),   
                
     #journal urls
     url(r'^journal/$', 'students.views.journal.journal_list', name='journal'),           

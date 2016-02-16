@@ -28,11 +28,13 @@ ALLOWED_HOSTS = []
 
 from django.conf import global_settings
 
-''' TEMPLATE_CONTEXT_PROCESSORS = \
+
+""" TEMPLATE_CONTEXT_PROCESSORS = 
 	global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
 	'django.core.context_processors.request',
 	'studentsdb.context_processors.students_proc',
-] '''
+] """
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'students',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -73,7 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-		'studentsdb.context_processors.students_proc',
+                'studentsdb.context_processors.students_proc',
             ],
         },
     },
@@ -85,14 +88,15 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '..', 'db.sqlite3'),
-    }
-}
+# Database
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+# We moved DATABASES variable to db.py module which added to .gitignore
+# so we don't keep mysql passwords in repository
+from .db import DATABASES
 
+# Internationalization
+# https://docs.djangoproject.com/en/1.7/topics/i18n/
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
