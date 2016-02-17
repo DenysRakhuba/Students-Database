@@ -8,11 +8,14 @@ class Exam(models.Model):
     class Meta(object):
         verbose_name = u"Іспит"
         verbose_name_plural = u"Іспити"
+        ordering = ['title']
            
+        
     title = models.CharField(
         max_length=256,
         blank=False,
         verbose_name=u"Предмет")
+             
     
     date_and_time = models.CharField(
         max_length=256,
@@ -31,4 +34,4 @@ class Exam(models.Model):
     
     
     def __unicode__(self):
-        return u"%s %s" % (self.title, self.group)
+        return u"%s (%s)" % (self.title, self.group)
