@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 from django.views.generic import TemplateView
-
+from students.views.students import StudentUpdateView, StudentDeleteView
 
 
 urlpatterns = patterns('',
@@ -10,12 +10,12 @@ urlpatterns = patterns('',
     url(r'^$', 'students.views.students.students_list', name='home'),
     url(r'^students/add/$', 'students.views.students.students_add',
          name='students_add'),
-    url(r'^students/(?P<sid>\d+)/edit/$',
-         'students.views.students.students_edit',
-         name='students_edit'),
-    url(r'^students/(?P<sid>\d+)/delete/$',
-         'students.views.students.students_delete',
-         name='students_delete'),
+    url(r'^students/(?P<pk>\d+)/edit/$',
+        StudentUpdateView.as_view(),
+        name='students_edit'),
+    url(r'^students/(?P<pk>\d+)/delete/$',
+        StudentDeleteView.as_view(),
+        name='students_delete'),
 
     # Groups urls
     url(r'^groups/$', 'students.views.groups.groups_list', name='groups'),
@@ -33,7 +33,11 @@ urlpatterns = patterns('',
     url(r'^exams/(?P<gid>\d+)/edit/$', 'students.views.exams.exams_edit',
          name='exams_edit'),
     url(r'^exams/(?P<gid>\d+)/delete/$', 'students.views.exams.exams_delete',
-         name='exams_delete'),   
+         name='exams_delete'),
+    
+    # Contact Admin Form
+    url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin',
+        name='contact_admin'),
                
     #journal urls
     url(r'^journal/$', 'students.views.journal.journal_list', name='journal'),           
