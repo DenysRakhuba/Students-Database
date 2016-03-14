@@ -1,8 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-
 from django.views.generic import TemplateView
-from students.views.students import StudentUpdateView, StudentDeleteView
+from students.views.students import StudentDeleteView
 
 
 urlpatterns = patterns('',
@@ -10,9 +9,11 @@ urlpatterns = patterns('',
     url(r'^$', 'students.views.students.students_list', name='home'),
     url(r'^students/add/$', 'students.views.students.students_add',
          name='students_add'),
-    url(r'^students/(?P<pk>\d+)/edit/$',
-        StudentUpdateView.as_view(),
+    url(r'^students/edit/$', 'students.views.students.students_edit',
         name='students_edit'),
+    #url(r'^students/(?P<pk>\d+)/edit/$',
+     #   StudentUpdateView.as_view(),
+    #    name='students_edit'),
     url(r'^students/(?P<pk>\d+)/delete/$',
         StudentDeleteView.as_view(),
         name='students_delete'),
@@ -35,9 +36,9 @@ urlpatterns = patterns('',
     url(r'^exams/(?P<gid>\d+)/delete/$', 'students.views.exams.exams_delete',
          name='exams_delete'),
     
-    # Contact Admin Form
-    url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin',
-        name='contact_admin'),
+    #contact form test
+    url(r'^contact/$', 'students.views.contact_admin.contact_admin', name='contact'),
+    
                
     #journal urls
     url(r'^journal/$', 'students.views.journal.journal_list', name='journal'),           
