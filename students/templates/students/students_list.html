@@ -3,9 +3,22 @@
 {% load static from staticfiles %}
 
 {% block meta_title %}Студенти{% endblock meta_title %}
+{% block status_message %}
+{% if messages %}
+
+    {% for message in messages %}
+   <p></p>
+ <p class="text-warning bg-warning">{{ message }} </p>
+ 
+    {% endfor %}
+
+{% endif %}
+{% endblock status_message %}
 
 {% block title %}База Студентів{% endblock title %}
 {% block content %}
+
+
 
       <a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a>
               
