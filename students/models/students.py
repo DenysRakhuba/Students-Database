@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 class Student(models.Model):
-    
+      
     class Meta(object):
         verbose_name = u"Студент"
         verbose_name_plural = u"Студенти"
@@ -32,7 +32,6 @@ class Student(models.Model):
         null=True)
     
     photo = models.ImageField(
-        upload_to="/a/b/c/",
         blank=True,
         verbose_name=u"Фото",
         null=True)
