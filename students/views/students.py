@@ -13,7 +13,7 @@ from django.views.generic import UpdateView, DeleteView
 from django.forms import ModelForm
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Layout
 from crispy_forms.bootstrap import FormActions
 
 from django.contrib import messages
@@ -57,40 +57,47 @@ def students_add(request):
             #validate user input
             first_name = request.POST.get('first_name', '').strip()
             if not first_name:
-                errors['first_name'] = u"Ім'я є обов'язковим"
+                errors['test'] = messages.error(request, u"Ім'я є обов'язковим", extra_tags='first')
+                #errors['first_name'] = u"Ім'я є обов'язковим"
             else:
                 data['first_name'] = first_name
                 
             last_name = request.POST.get('last_name', '').strip()
             if not last_name:
-                errors['last_name'] = u"Прізвище є обов'язковим"
+                errors['test'] = messages.error(request, u"Прізвище є обов'язковим", extra_tags='last')
+                #errors['last_name'] = u"Прізвище є обов'язковим"
             else:
                 data['last_name'] = last_name
             
             birthday = request.POST.get('birthday', '').strip()
             if not birthday:
-                errors['birthday'] = u"Дата народження є обов'язковою"
+                errors['test'] = messages.error(request, u"Дата народження є обов'язковою", extra_tags='birth')
+                #errors['birthday'] = u"Дата народження є обов'язковою"
             else:
                 try:
                     datetime.strptime(birthday, '%Y-%m-%d')
                 except Exception:
-                    errors['birthday'] = u"Введіть коректний формат дати (напр. 1984-12-30)"
+                    errors['test'] = messages.error(request, u"Введіть коректний формат дати (напр. 1984-12-30)", extra_tags='birth')
+                    #errors['birthday'] = u"Введіть коректний формат дати (напр. 1984-12-30)"
                 else:
                     data['birthday'] = birthday
                 
             ticket = request.POST.get('ticket', '').strip()
             if not ticket:
-                errors['ticket'] = u"Номер білета є обов'язковим"
+                errors['test'] = messages.error(request, u"Номер білета є обов'язковим", extra_tags='ticket')
+                #errors['ticket'] = u"Номер білета є обов'язковим"
             else:
                 data['ticket'] = ticket
             
             student_group = request.POST.get('student_group', '').strip()
             if not student_group:
-                messages.error(request, "Оберіть групу для студента")
+                errors['test'] = messages.error(request, u"Оберіть групу для студента", extra_tags='group')
+                #errors['student_group'] = u"Оберіть групу для студента"
             else:
                 groups = Group.objects.filter(pk=student_group)
                 if len(groups) != 1:
-                    messages.add_message(request, message.error, "Оберіть коректну групу")
+                    errors['test'] = messages.error(request, u"Оберіть коректну групу", extra_tags='group')
+                    #errors['student_group'] = u"Оберіть коректну групу"
                 else:
                     data['student_group'] = groups[0]
             
@@ -102,9 +109,11 @@ def students_add(request):
                 name_file = str(photo.name)
                 # typed = str(photo.content_type)
                 if photo.size > MAX_SIZE:
-                    errors['photo'] = u"Розмір фото перевищує 2 МБ"
+                    errors['test'] = messages.error(request, u"Розмір фото перевищує 2 МБ", extra_tags='photo')
+                    #errors['photo'] = u"Розмір фото перевищує 2 МБ"
                 elif name_file[-4:] not in file_extensions:
-                    errors['photo'] = u"Данний тип фото не підтримується. Змініть на: *.jpg, *.jpeg, *.gif"
+                    errors['test'] = messages.error(request,u"Данний тип фото не підтримується. Змініть на: *.jpg, *.jpeg, *.gif", extra_tags='photo')
+                    #errors['photo'] = u"Данний тип фото не підтримується. Змініть на: *.jpg, *.jpeg, *.gif"
                     # errors['photo'] = str(photo.name)
                 else:
                     data['photo'] = photo
@@ -115,7 +124,7 @@ def students_add(request):
                 student = Student(**data)
                 student.save()
                 
-                messages.add_message(request, messages.SUCCESS, "Студента на iм'я {} {} успішно додано!".format(student.first_name, student.last_name))
+                messages.add_message(request, messages.SUCCESS, "Студента на iм'я {} {} успішно додано!".format(student.first_name, student.last_name), extra_tags='ok')
                 return HttpResponseRedirect(reverse('home'))
             
             else:
@@ -126,7 +135,7 @@ def students_add(request):
                               
         elif request.POST.get('cancel_button') is not None:
             #redirect to home page
-            messages.add_message(request, messages.SUCCESS, "Додавання студента скасовано!")
+            messages.add_message(request, messages.SUCCESS, "Додавання студента скасовано!", extra_tags='cancel')
             return HttpResponseRedirect(reverse('home'))
     else:
         #initial form render
@@ -155,7 +164,7 @@ class StudentUpdateForm(ModelForm):
         # set form tag attributes
         self.helper.form_action = reverse('students_edit',
             kwargs={'pk': kwargs['instance'].id})
-        
+
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
         
@@ -166,24 +175,33 @@ class StudentUpdateForm(ModelForm):
         self.helper.field_class = 'col-sm-10'
         
         # add buttons
-        self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
+        self.helper.layout = Layout(
+            'first_name',
+            'last_name',
+            'middle_name',
+            'birthday',
+            'photo',
+            'ticket',
+            'student_group',
+            'notes',
+            Submit('add_button', u'Зберегти', css_class="btn btn-primary col-sm-offset-3"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
             )
-
+        
 class StudentUpdateView(UpdateView):
     model = Student
     template_name = 'students/students_edit.html'
     form_class = StudentUpdateForm
     
     def get_success_url(self):
-        return u'%s?status_message=Студента успішно збережено!' % reverse('home')
+        return reverse('home')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(u'%s?status_message=Редагування студента відмінено!' % reverse('home'))
+            messages.add_message(request, messages.SUCCESS, "Редагування студента відмінено!")
+            return HttpResponseRedirect(reverse('home'))
         else:
+            messages.add_message(request, messages.SUCCESS, "Студента успішно збережено!")
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
         
-        z
