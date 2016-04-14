@@ -138,13 +138,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 # email settings
 # please, set here you smtp server details and your admin email
-ADMIN_EMAIL = 'admin@studentsdb.com'
+ADMIN_EMAIL = 'spartaqueee@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '465'
+EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'denis.rakhuba@gmail.com'
-EMAIL_HOST_PASSWORD = '********'
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
+EMAIL_HOST_PASSWORD = 'ME727328stabber'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
