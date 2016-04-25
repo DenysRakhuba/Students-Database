@@ -4,8 +4,19 @@
 
 {% block meta_title %}Іспити{% endblock meta_title %}
 
-{% block title %}Іспити{% endblock title %}
+{% block status_message %}
+{% if messages %}
 
+    {% for message in messages %}
+   <p></p>
+ <p class="text-warning bg-warning">{{ message }} </p>
+ 
+    {% endfor %}
+
+{% endif %}
+{% endblock status_message %}
+
+{% block title %}Іспити{% endblock title %}
 {% block content %}
       
         <a href="{% url "exams_add" %}" class="btn btn-primary">Додати Іспит</a>
